@@ -21,78 +21,83 @@
 # aire1.bajar_temperatura(20)
 
 
+
+
+
+
+
 # Clase que representa cada sensor de presión
-class SensorPresion:
+# class SensorPresion:
 
-    # Atributos de clase
-    LIMITE_PELIGRO = 200
-    total_lecturas = 0
+#     # Atributos de clase
+#     LIMITE_PELIGRO = 200
+#     total_lecturas = 0
 
-    # Constructor
-    def __init__(self, nombre, presion):
-        self.nombre = nombre
-        self.presion = presion
-        SensorPresion.total_lecturas += 1
+#     # Constructor
+#     def __init__(self, nombre, presion):
+#         self.nombre = nombre
+#         self.presion = presion
+#         SensorPresion.total_lecturas += 1
 
-    # Getter
-    @property
-    def presion(self):
-        return self.__presion
+#     # Getter
+#     @property
+#     def presion(self):
+#         return self.__presion
 
-    # Setter con validación
-    @presion.setter
-    def presion(self, nueva_presion):
-        if nueva_presion >= 0:
-            self.__presion = nueva_presion
-        else:
-            self.__presion = 0
+#     # Setter con validación
+#     @presion.setter
+#     def presion(self, nueva_presion):
+#         if nueva_presion >= 0:
+#             self.__presion = nueva_presion
+#         else:
+#             self.__presion = 0
 
 
-# Lista para guardar todos los sensores
-lista_sensores = []
+# # Lista para guardar todos los sensores
+# lista_sensores = []
 
-print("--- SISTEMA DE MONITOREO INDUSTRIAL ---")
-print("Leyendo registros de presión...")
+# print("--- SISTEMA DE MONITOREO INDUSTRIAL ---")
+# print("Leyendo registros de presión...")
 
-# Lectura del archivo
-with open("registros.txt", "r") as archivo:
+# # Lectura del archivo
+# with open("registros.txt", "r") as archivo:
 
-    while True:
-        nombre = archivo.readline().strip()
+#     while True:
+#         nombre = archivo.readline().strip()
 
-        # Si ya no hay más líneas, termina el ciclo
-        if nombre == "":
-            break
+#         # Si ya no hay más líneas, termina el ciclo
+#         if nombre == "":
+#             break
 
-        presion_texto = archivo.readline().strip()
-        presion_numero = int(presion_texto)
+#         presion_texto = archivo.readline().strip()
+#         presion_numero = int(presion_texto)
 
-        # Crear objeto
-        sensor = SensorPresion(nombre, presion_numero)
+#         # Crear objeto
+#         sensor = SensorPresion(nombre, presion_numero)
 
-        # Guardar objeto en la lista
-        lista_sensores.append(sensor)
+#         # Guardar objeto en la lista
+#         lista_sensores.append(sensor)
 
-# Escritura del archivo de alertas
-with open("alertas.txt", "w") as archivo_alertas:
+# # Escritura del archivo de alertas
+# with open("alertas.txt", "w") as archivo_alertas:
 
-    archivo_alertas.write("REPORTE DE INCIDENCIAS - CALDERAS CRÍTICAS\n")
-    archivo_alertas.write("------------------------------------------\n")
+#     archivo_alertas.write("REPORTE DE INCIDENCIAS - CALDERAS CRÍTICAS\n")
+#     archivo_alertas.write("------------------------------------------\n")
 
-    contador_alertas = 1
+#     contador_alertas = 1
 
-    # Recorrer la lista de sensores
-    for sensor in lista_sensores:
+#     # Recorrer la lista de sensores
+#     for sensor in lista_sensores:
 
-        if sensor.presion > SensorPresion.LIMITE_PELIGRO:
-            estado = "¡PELIGRO!"
-            archivo_alertas.write(f"{contador_alertas}. {sensor.nombre}\n")
-            contador_alertas += 1
-        else:
-            estado = "Seguro"
+#         if sensor.presion > SensorPresion.LIMITE_PELIGRO:
+#             estado = "¡PELIGRO!"
+#             archivo_alertas.write(f"{contador_alertas}. {sensor.nombre}\n")
+#             contador_alertas += 1
+#         else:
+#             estado = "Seguro"
 
-        print(f"Analizando: {sensor.nombre} | Estado: {estado}")
+#         print(f"Analizando: {sensor.nombre} | Estado: {estado}")
 
-print("\n[AUDITORÍA] Se han generado alertas en el archivo 'alertas.txt'")
-print(f"[RESUMEN] Total de sensores procesados: {SensorPresion.total_lecturas}.")
-print("---------------------------------------")
+# print("\n[AUDITORÍA] Se han generado alertas en el archivo 'alertas.txt'")
+# print(f"[RESUMEN] Total de sensores procesados: {SensorPresion.total_lecturas}.")
+# print("---------------------------------------")
