@@ -126,7 +126,7 @@ class RegistroVisitantes:
 
 
 
-persona1=RegistroVisitantes("Maria")
+persona1=RegistroVisitantes("Maria") 
 
 persona2= RegistroVisitantes("Carlos")
 
@@ -139,7 +139,8 @@ print(f"\nTotal final del dia de personas es: {RegistroVisitantes.total_personas
 
 # Reto integrador
 4. **Seguridad**
-    * Crea un `@property` llamado `saldo` que actúe como Getter 
+    * Crea un `@propertyPS 
+` llamado `saldo` que actúe como Getter 
       * **OJO:** No hagas el Setter para el saldo, el saldo no se debe poder sobrescribir con un `=`, solo debe cambiar mediante depósitos y retiros.
     * Crea un `@property` llamado `titular` (Getter).
     * Crea su respectivo `@titular.setter`. La validación debe asegurar que el nombre no esté en blanco
