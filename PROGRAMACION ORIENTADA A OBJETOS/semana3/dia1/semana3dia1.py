@@ -59,18 +59,38 @@
 # mi_guerrero.bloquear_ataque()
 
 
-class Persona:
-    def __init__(self, nombre):
+# class Persona:
+#     def __init__(self, nombre):
         
-        self.nombre = nombre
+#         self.nombre = nombre
 
-class Estudiante(Persona):
-    def __init__(self,nombre_ingresado,nota_ingresada):
-        super().__init__(nombre_ingresado)
-        self.nota= nota_ingresada
+# class Estudiante(Persona):
+#     def __init__(self,nombre_ingresado,nota_ingresada):
+#         super().__init__(nombre_ingresado)
+#         self.nota= nota_ingresada
 
-def mostrar_info(self):
-    print(f"Hola mi nombre es: {self.nombre} y mi nota es: {self.nota}")
+#     def mostrar_info(self):
+#         print(f"Hola mi nombre es: {self.nombre} y mi nota es: {self.nota}")
 
-    estudiante1= Estudiante("Juan", 8.5)
-    estudiante1.mostrar_info()
+# estudiante1= Estudiante("Juan", 8.5)
+# estudiante1.mostrar_info()
+
+
+
+class RegistrarVehiculo:
+
+    carros_disponibles=0
+    tarifa_base_alquiler= 250
+    def __init__(self, placa, marca, modelo):
+        self.placa= placa
+        self.marca = marca
+        self.modelo = modelo
+        self.__kilometros= 0
+        RegistrarVehiculo.carros_disponibles+=1
+    
+    def costo_alquiler(self, dias_alquiler):
+        return RegistrarVehiculo.tarifa_base_alquiler * dias_alquiler
+
+    def kilometraje(self, kilometraje_nuevo):
+        if self.kilometros <= kilometraje_nuevo:
+
