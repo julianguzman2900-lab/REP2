@@ -77,20 +77,20 @@
 
 
 
-class RegistrarVehiculo:
+# class RegistrarVehiculo:
 
-    carros_disponibles=0
-    tarifa_base_alquiler= 250
-    def __init__(self, placa, marca, modelo):
-        self.placa= placa
-        self.marca = marca
-        self.modelo = modelo
-        self.__kilometros= 0
-        RegistrarVehiculo.carros_disponibles+=1
+#     carros_disponibles=0
+#     tarifa_base_alquiler= 250
+#     def __init__(self, placa, marca, modelo):
+#         self.placa= placa
+#         self.marca = marca
+#         self.modelo = modelo
+#         self.__kilometros= 0
+#         RegistrarVehiculo.carros_disponibles+=1
     
-    def costo_alquiler(self, dias_alquiler):
-        return RegistrarVehiculo.tarifa_base_alquiler * dias_alquiler
+#     def costo_alquiler(self, dias_alquiler):
+#         return RegistrarVehiculo.tarifa_base_alquiler * dias_alquiler
 
-    def kilometraje(self, kilometraje_nuevo):
-        if self.kilometros <= kilometraje_nuevo:
-
+#     def kilometraje(self, kilometraje_nuevo):
+#         if self.kilometros <= kilometraje_nuevo:
+#             kil
