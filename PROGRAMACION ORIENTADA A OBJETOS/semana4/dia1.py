@@ -105,15 +105,85 @@
                 
 
 
-class LibroBiblioteca:
-    def __init__(self,titulo,autor,id):
-        self.titulo= titulo
-        self.autor= autor
-        self.id= id
-        self.prestado= True
+
 
 class VistaBiblioteca:
     @staticmethod
     def mostar_menu():
         print()
 
+# MODELO
+class Libro:
+    def __init__(self, titulo, autor, id):
+        self.titulo = titulo
+        self.autor = autor
+        self.id = id
+        self.prestado = False
+
+    def prestar(self):
+        self.prestado = True
+
+
+class Biblioteca:
+    def __init__(self):
+        self.libros = []
+
+    def agregar_libro(self, libro):
+        self.libros.append(libro)
+
+    def listar_libros(self):
+        return self.libros
+
+    def prestar_libro(self, id):
+        for libro in self.libros:
+            if libro.id == id:
+                libro.prestar()
+
+
+# VISTA
+class VistaBiblioteca:
+    def menu(self):
+        print("1. Agregar libro")
+        print("2. Listar libros")
+        print("3. Prestar libro")
+        print("4. Salir")
+        return input("Opción: ")
+
+    def mostrar_libros(self, libros):
+        for l in libros:
+            estado = "Prestado" if l.prestado else "Disponible"
+            print(l.id, l.titulo, l.autor, estado)
+
+
+# CONTROLADOR
+class ControladorBiblioteca:
+    def __init__(self):
+        self.biblioteca = Biblioteca()
+        self.vista = VistaBiblioteca()
+
+    def iniciar(self):
+        while True:
+            opcion = self.vista.menu()
+
+            if opcion == "1":
+                titulo = input("Título: ")
+                autor = input("Autor: ")
+                id = input("ID: ")
+                libro = Libro(titulo, autor, id)
+                self.biblioteca.agregar_libro(libro)
+
+            elif opcion == "2":
+                libros = self.biblioteca.listar_libros()
+                self.vista.mostrar_libros(libros)
+
+            elif opcion == "3":
+                id = input("ID del libro: ")
+                self.biblioteca.prestar_libro(id)
+
+            elif opcion == "4":
+                break
+
+
+# EJECUCIÓN
+libro1 = ControladorBiblioteca()
+libro1.iniciar()
