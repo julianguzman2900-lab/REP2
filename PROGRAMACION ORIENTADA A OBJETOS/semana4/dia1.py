@@ -107,10 +107,10 @@
 
 
 
-class VistaBiblioteca:
-    @staticmethod
-    def mostar_menu():
-        print()
+# class VistaBiblioteca:
+#     @staticmethod
+#     def mostar_menu():
+#       pass
 
 # MODELO
 class Libro:
@@ -130,6 +130,7 @@ class Biblioteca:
 
     def agregar_libro(self, libro):
         self.libros.append(libro)
+  
 
     def listar_libros(self):
         return self.libros
@@ -138,7 +139,7 @@ class Biblioteca:
         for libro in self.libros:
             if libro.id == id:
                 libro.prestar()
-
+               
 
 # VISTA
 class VistaBiblioteca:
@@ -150,9 +151,12 @@ class VistaBiblioteca:
         return input("Opción: ")
 
     def mostrar_libros(self, libros):
-        for l in libros:
-            estado = "Prestado" if l.prestado else "Disponible"
-            print(l.id, l.titulo, l.autor, estado)
+        for libro in libros: 
+            situacion = "Prestado" if libro.prestado else "Disponible" 
+            print("LIBRO |  AUTOR  | ID | ESTADO")
+            print(f"{ libro.titulo}  | { libro.autor} |  {libro.id} {situacion} ")
+     
+
 
 
 # CONTROLADOR
@@ -171,6 +175,7 @@ class ControladorBiblioteca:
                 id = input("ID: ")
                 libro = Libro(titulo, autor, id)
                 self.biblioteca.agregar_libro(libro)
+                print("Libro agregado exitosamente")
 
             elif opcion == "2":
                 libros = self.biblioteca.listar_libros()
@@ -179,8 +184,11 @@ class ControladorBiblioteca:
             elif opcion == "3":
                 id = input("ID del libro: ")
                 self.biblioteca.prestar_libro(id)
+                print("El libro fue prestado ")
+
 
             elif opcion == "4":
+                print("Saliendo...")
                 break
 
 
