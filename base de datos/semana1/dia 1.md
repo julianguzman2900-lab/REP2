@@ -13,4 +13,4 @@ Llave(clave) primaria(PK): Identificador **unico** para cada fila en una tabla
 - Llave(clave) foranea(FK): Relacion entre tablas, enlazando con la lleve primaria de otra tabla
 
 
-DBMS: DataBase Managment System 
+DBMS: DataBase Managment System

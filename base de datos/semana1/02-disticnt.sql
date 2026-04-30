@@ -1,0 +1,1 @@
+-- nos va a generar el resultado con los daton no duplicados 
