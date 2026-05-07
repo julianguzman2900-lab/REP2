@@ -15,7 +15,7 @@ WHERE age  IN (22,30,23) AND email IS  NOT NULL
 
 
 
-
+-- IN ayuda a filtrar datos especificos junto al where 
 
 
 

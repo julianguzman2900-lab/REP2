@@ -2,3 +2,5 @@
 SELECT *
 FROM users 
 WHERE age BETWEEN 25 AND 30
+
+-- sirve para filtrar registros dentro de un rango específico de valores 
