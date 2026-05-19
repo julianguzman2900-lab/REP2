@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Bancario</title>
+    <link rel="stylesheet" href="css/banco.css">
+</head>
+<body>
+    <div class="contenedor-simulador">
+        <h2>Identificación de clientes</h2>
+        
+        <form id="credito" action="/enviar_datos" method="post">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Ej: Julian">
+            
+            <label for="ingreso">Ingreso mensual:</label>
+            <input id="ingreso" name="ingreso" type="number">
+            
+            <label for="monto">Crédito a solicitar:</label>
+            <input id="monto" name="monto" type="number">
+            
+            <button type="submit">Solicitar Crédito</button>
+        </form>
+    </div>
+</body>
+</html>

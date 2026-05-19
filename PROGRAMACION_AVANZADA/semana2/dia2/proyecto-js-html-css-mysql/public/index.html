@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title> Estacion espacial </title>
+    </head>
+    <body>
+        <header>
+            <h1>Bienvenido a la base de control de la estacion espacial</h1>
+            <h2>Panel de control</h2>
+            <h3>Modulo de despacho y registro de misiones</h3>
+        </header>
+        <main>
+            <section>
+                <h3> Registrar nueva mision de exploracion </h3>
+
+         <form action="/misiones" method="POST">
+    <div>
+        <label for="nombre">Nombre de la nave:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
+    <br>
+    <div>
+        <label for="destino">Sector de destino:</label>
+        <input type="text" id="destino" name="destino" required>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="rango_peligro">Rango de peligro:</label>
+        <select id="rango_peligro" name="rango_peligro" required>
+            <option value="">Selecciona un rango</option>
+            <option value="Bajo">Bajo</option>
+            <option value="Medio">Medio</option>
+            <option value="Alto">Alto</option>
+            <option value="Extremo">Alto</option>
+        </select>
+    </div>
+    <br>
+<div>
+    <label for="detalles">Detalles adicionales:</label>
+    <textarea id="detalles" name="detalles" rows="2" cols="50" placehold="informacion adicional de la mision..."></textarea>
+</div>
+
+
+    <button type="submit">Registrar Mision</button>
+
+
+                </form>
+            </section>
+        </main>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
