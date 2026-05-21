@@ -8,7 +8,7 @@ const PORT = 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'julian28',
+    password: 'root',
     database: 'ecoeventos_db'
 });
 
