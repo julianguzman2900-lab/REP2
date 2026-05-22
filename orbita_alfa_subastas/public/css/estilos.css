@@ -1,0 +1,36 @@
+body{
+    font-family: Georgia, Serif;
+    background-color: #13152edf;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header{
+    background-color: rgba(16, 0, 75, 0.781);
+    color: rgb(199, 199, 199);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+section{
+    background-color: rgb(231, 231, 231);
+    width: 300px;
+    padding: 20px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+input{
+    width: 93%;
+    padding: 10px;
+}
+
+button{
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 3, 41, 0.781);
+    color: rgb(255, 255, 255);
+    border: none;
+}
+
