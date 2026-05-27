@@ -1,0 +1,19 @@
+<img id = "imagen" width = "300"/>
+<script>
+async function cargarImagen(){
+    try{
+      const res = await fetch("https://share.google/138hLpB7ib5mQRyAO")
+
+      const blob = await res.blob();
+      const urlTemporal = URL.createObjectURL(blob)
+
+        document.getElementById("imagen").src = urlTemporal
+
+        console.log("La imagen esta cargada en memoria")
+    }
+    catch(error){
+        console.error("Error al desgargar", error)
+    }
+}
+cargarImagen()
+</script>
