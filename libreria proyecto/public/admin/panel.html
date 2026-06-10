@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel | Librería El Saber</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1',
+                        danger: '#EF4444',
+                        success: '#10B981',
+                        info: '#0EA5E9',
+                        warning: '#F59E0B',
+                        light: '#F8FAFC',
+                        dark: '#1E293B',
+                        'sidebar': '#1E293B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'modern': '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02)',
+                        'card': '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+        .transition-custom {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+        .content-auto {
+            content-visibility: auto;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .btn-hover {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+        .btn-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-hover:active {
+            transform: scale(0.95);
+        }
+    }
+</style>
+</head>
+<body class="bg-gray-50 font-sans flex h-screen overflow-hidden">
+
+    <!-- 🟦 BARRA LATERAL -->
+    <aside class="w-64 bg-sidebar text-white shadow-2xl z-20 hidden md:block">
+        <div class="h-full flex flex-col">
+            <!-- Logo -->
+            <div class="p-5 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fa fa-book fa-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">Librería</h1>
+                        <p class="text-xs text-gray-400">Panel Admin</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menú -->
+            <nav class="flex-1 py-4 px-3 overflow-y-auto scrollbar-hide">
+                <ul class="space-y-1">
+                    <li>
+                        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/20 text-white font-medium">
+                            <i class="fa fa-th-large w-5 text-center"></i>
+                            <span>Gestión de Libros</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../index.html" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-custom">
+                            <i class="fa fa-store w-5 text-center"></i>
+                            <span>Ver Tienda</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Usuario -->
+            <div class="p-4 border-t border-white/10">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-info flex items-center justify-center">
+                            <span id="inicialUsuario" class="font-semibold"></span>
+                        </div>
+                        <div>
+                            <p id="nombreAdmin" class="text-sm font-medium"></p>
+                            <p class="text-xs text-gray-400">Administrador</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="btnCerrar" class="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-danger/10 text-danger hover:bg-danger/20 transition-custom text-sm font-medium">
+                    <i class="fa fa-sign-out"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 🟩 CONTENIDO PRINCIPAL -->
+    <main class="flex-1 overflow-y-auto">
+        <!-- Barra Superior Móvil -->
+        <div class="md:hidden bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-10">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                    <i class="fa fa-book"></i>
+                </div>
+                <h2 class="font-bold text-dark">Administración</h2>
+            </div>
+            <button id="menuToggle" class="text-gray-500">
+                <i class="fa fa-bars fa-lg"></i>
+            </button>
+        </div>
+
+        <div class="container mx-auto px-4 py-6 lg:px-8">
+            <!-- Encabezado -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
+                <div>
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-1">Gestión de Libros</h2>
+                    <p class="text-gray-500">Administra todo el catálogo de tu librería</p>
+                </div>
+                <button id="btnAgregar" class="bg-primary hover:bg-primary/90 text-white px-5 py-3 rounded-xl shadow-lg shadow-primary/20 btn-hover transition-custom flex items-center gap-2 font-medium">
+                    <i class="fa fa-plus-circle fa-lg"></i>
+                    <span>Agregar Libro</span>
+                </button>
+            </div>
+
+            <!-- Tarjetas de Estadísticas -->
+            <div id="estadisticas" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                <!-- Se llenan con JS -->
+            </div>
+
+            <!-- Alerta -->
+            <div id="alerta" class="hidden mb-6 p-4 rounded-2xl text-center font-medium transition-custom"></div>
+
+            <!-- Tabla Moderna -->
+            <div class="bg-white rounded-2xl shadow-card overflow-hidden mb-8">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead class="text-gray-700 bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 font-semibold">ID</th>
+                                <th class="px-6 py-4 font-semibold">Libro</th>
+                                <th class="px-6 py-4 font-semibold">Género</th>
+                                <th class="px-6 py-4 font-semibold text-center">Precio</th>
+                                <th class="px-6 py-4 font-semibold text-center">Stock</th>
+                                <th class="px-6 py-4 font-semibold text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaLibros" class="divide-y divide-gray-100">
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center text-gray-400">
+                                    <i class="fa fa-spinner fa-spin fa-2x mb-3"></i>
+                                    <p>Cargando datos...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 🟧 MODAL MODERNO -->
+    <div id="modalFormulario" class="fixed inset-0 bg-dark/60 backdrop-blur-sm flex items-center justify-center z-50 hidden p-4 transition-custom">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 opacity-0 transition-custom" id="modalContenido">
+            <div class="p-6 md:p-8 relative">
+                <button id="cerrarModal" class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-dark transition-custom">
+                    <i class="fa fa-times"></i>
+                </button>
+
+                <div class="mb-6">
+                    <h3 id="tituloModal" class="text-2xl font-bold text-dark mb-1">Agregar Nuevo Libro</h3>
+                    <p class="text-gray-500 text-sm">Completa todos los datos para registrar el libro</p>
+                </div>
+
+                <form id="formLibro" class="space-y-5">
+                    <input type="hidden" id="libroId">
+                    
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Título</label>
+                            <input type="text" id="titulo" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Autor</label>
+                            <input type="text" id="autor" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom" required>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Género</label>
+                            <select id="genero" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom">
+                                <option value="novela">📖 Novela</option>
+                                <option value="ciencia">🔬 Ciencia</option>
+                                <option value="historia">🏛️ Historia</option>
+                                <option value="educacion">🎓 Educación</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Precio ($)</label>
+                            <input type="number" step="0.01" id="precio" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Stock</label>
+                            <input type="number" id="stock" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom" required>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">URL de la Imagen</label>
+                        <input type="url" id="imagen" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom" placeholder="https://ejemplo.com/imagen.jpg" required>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Descripción</label>
+                        <textarea id="descripcion" rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none transition-custom resize-none" required></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transform hover:-translate-y-0.5 transition-custom">
+                        <i class="fa fa-save mr-2"></i> Guardar Cambios
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
